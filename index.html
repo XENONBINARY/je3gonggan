@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제3공간 — Café & Beer, Chung-Ang University</title>
+<meta name="description" content="흑석동 중앙대 중문 옆, 1급 바리스타가 17년째 운영하는 카페. Café run by a Level 1 Barista for 17 years. Cold brew, handmade wine, draft beer, fresh fruit smoothies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf6ee;
+    --paper2: #f2ead8;
+    --ink: #2c2016;
+    --warm: #c17f3b;
+    --sage: #6a8f6e;
+    --cream: #e8dfc8;
+    --muted: #8a7a65;
+    --wine: #8b3a3a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999; opacity: 0.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 100;
+    background: rgba(44,32,22,0.9);
+    backdrop-filter: blur(14px);
+    border-radius: 50px;
+    padding: 10px 22px;
+    display: flex; gap: 20px; align-items: center;
+    animation: fadeUp 0.6s ease both;
+    white-space: nowrap;
+  }
+  nav .logo {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 15px; font-weight: 700;
+    color: var(--warm);
+    padding-right: 16px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  nav a {
+    font-family: 'Gaegu', cursive;
+    font-size: 14px;
+    color: rgba(250,246,238,0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--warm); }
+
+  /* HERO */
+  .hero {
+    min-height: 100svh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 80px 24px 60px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 420px; height: 420px; border-radius: 50%;
+    border: 1.5px dashed var(--cream);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    animation: spin 45s linear infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 580px; height: 580px; border-radius: 50%;
+    border: 1px dashed rgba(232,223,200,0.5);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    animation: spin 70s linear infinite reverse;
+  }
+  @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+
+  .hero-since {
+    font-family: 'Gaegu', cursive;
+    font-size: 14px; color: var(--sage);
+    letter-spacing: 2px; margin-bottom: 18px;
+    position: relative;
+    animation: fadeUp 0.7s 0.05s ease both;
+  }
+  .hero h1 {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: clamp(64px, 18vw, 108px);
+    font-weight: 800; line-height: 1;
+    color: var(--ink); position: relative;
+    animation: fadeUp 0.7s 0.12s ease both;
+  }
+  .hero h1 span { color: var(--warm); }
+  .hero-en {
+    font-family: 'Gaegu', cursive;
+    font-size: clamp(15px, 3.5vw, 20px);
+    color: var(--muted); margin-top: 10px;
+    position: relative;
+    animation: fadeUp 0.7s 0.18s ease both;
+    letter-spacing: 1px;
+  }
+  .hero-sub {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px; color: var(--muted);
+    margin-top: 6px; position: relative;
+    animation: fadeUp 0.7s 0.22s ease both;
+  }
+  .hero-desc {
+    margin-top: 28px; font-size: 14px;
+    line-height: 2.2; color: var(--muted);
+    max-width: 340px; position: relative;
+    animation: fadeUp 0.7s 0.28s ease both;
+  }
+  .hero-pills {
+    margin-top: 22px;
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    position: relative;
+    animation: fadeUp 0.7s 0.34s ease both;
+  }
+  .pill {
+    background: var(--paper2);
+    border: 1px solid var(--cream);
+    border-radius: 50px;
+    padding: 7px 16px;
+    font-size: 13px; color: var(--ink);
+    font-family: 'Gaegu', cursive;
+  }
+  .hero-btns {
+    margin-top: 30px;
+    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+    position: relative;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 26px; border-radius: 50px;
+    font-size: 14px; font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500; text-decoration: none;
+    transition: all 0.2s; border: none; cursor: pointer;
+  }
+  .btn-primary { background: var(--warm); color: white; box-shadow: 0 4px 18px rgba(193,127,59,0.32); }
+  .btn-primary:hover { background: #a86d30; transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--cream); }
+  .btn-ghost:hover { background: var(--cream); }
+  .scroll-hint {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    font-family: 'Gaegu', cursive; font-size: 13px; color: var(--muted);
+    animation: bob 2.2s ease-in-out infinite;
+  }
+  @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+
+  /* SHARED */
+  section { padding: 90px 24px; }
+  .inner { max-width: 760px; margin: 0 auto; }
+  .sec-label {
+    font-family: 'Gaegu', cursive;
+    font-size: 13px; color: var(--sage);
+    letter-spacing: 3px; display: block;
+    margin-bottom: 10px; text-align: center;
+  }
+  .sec-title {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: clamp(24px, 5.5vw, 36px);
+    font-weight: 700; line-height: 1.5;
+    text-align: center; margin-bottom: 6px;
+  }
+  .sec-title-en {
+    font-family: 'Gaegu', cursive;
+    font-size: 15px; color: var(--muted);
+    text-align: center; display: block;
+    margin-bottom: 20px;
+  }
+  .sec-body {
+    font-size: 15px; line-height: 2.2;
+    color: var(--muted); text-align: center;
+    max-width: 560px; margin: 0 auto 36px;
+  }
+  .divider { text-align: center; color: var(--cream); letter-spacing: 10px; padding: 8px; font-size: 18px; }
+
+  /* STORY */
+  .stats {
+    background: var(--paper2); border-radius: 24px;
+    padding: 32px 24px;
+    display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 24px;
+  }
+  .stat { text-align: center; min-width: 110px; }
+  .stat-num {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 38px; font-weight: 800;
+    color: var(--warm); display: block; line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.7; }
+  .stat-label em { font-style: normal; font-size: 11px; color: rgba(138,122,101,0.7); display: block; }
+
+  /* MENU */
+  .menu-section { background: var(--ink); color: var(--paper); }
+  .menu-section .sec-label { color: var(--warm); }
+  .menu-section .sec-title { color: var(--paper); }
+  .menu-section .sec-title-en { color: rgba(250,246,238,0.4); }
+  .menu-section .sec-body { color: rgba(250,246,238,0.5); }
+
+  .menu-tabs {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    justify-content: center; margin-bottom: 36px;
+  }
+  .mtab {
+    font-family: 'Gaegu', cursive; font-size: 15px;
+    padding: 8px 20px; border-radius: 50px;
+    border: 1.5px solid rgba(255,255,255,0.12);
+    color: rgba(250,246,238,0.6);
+    background: transparent; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .mtab.active, .mtab:hover { background: var(--warm); color: white; border-color: var(--warm); }
+
+  .menu-panel { display: none; }
+  .menu-panel.active { display: block; animation: fadeUp 0.3s ease; }
+
+  .menu-table { width: 100%; border-collapse: collapse; }
+  .menu-table tr {
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.15s;
+  }
+  .menu-table tr:hover { background: rgba(255,255,255,0.03); }
+  .menu-table tr:last-child { border-bottom: none; }
+  .menu-table td { padding: 13px 8px; font-size: 14px; line-height: 1.6; }
+  .menu-table .name { color: var(--paper); font-weight: 400; }
+  .menu-table .name-en { font-size: 11px; color: rgba(250,246,238,0.32); display: block; margin-top: 2px; }
+  .menu-table .price {
+    text-align: right; white-space: nowrap;
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 15px; color: var(--warm); font-weight: 700;
+  }
+  .menu-table th {
+    font-size: 11px; letter-spacing: 2px;
+    color: rgba(250,246,238,0.28);
+    text-align: right; padding: 0 8px 14px;
+    font-weight: 400; text-transform: uppercase;
+  }
+  .menu-table th:first-child { text-align: left; }
+  .new-badge {
+    display: inline-block;
+    background: var(--warm); color: white;
+    font-size: 10px; padding: 2px 7px;
+    border-radius: 20px; margin-left: 6px;
+    vertical-align: middle; font-weight: 500;
+  }
+  .menu-note {
+    text-align: center; margin-top: 24px;
+    font-family: 'Gaegu', cursive;
+    font-size: 14px; color: rgba(250,246,238,0.38);
+    line-height: 1.9;
+  }
+
+  /* VIBES */
+  .vibe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px; margin-top: 36px;
+  }
+  .vibe-card {
+    background: var(--paper2); border-radius: 20px;
+    padding: 26px 18px; text-align: center;
+    transition: transform 0.2s;
+  }
+  .vibe-card:hover { transform: translateY(-3px); }
+  .vibe-emoji { font-size: 32px; display: block; margin-bottom: 12px; }
+  .vibe-card h4 { font-family: 'Gaegu', cursive; font-size: 17px; color: var(--ink); margin-bottom: 4px; }
+  .vibe-card .vibe-en { font-size: 11px; color: var(--muted); display: block; margin-bottom: 8px; font-family: 'Gaegu', cursive; }
+  .vibe-card p { font-size: 12px; color: var(--muted); line-height: 1.8; }
+
+  /* FIND US */
+  .findus { background: var(--paper2); }
+  .info-card { background: white; border-radius: 20px; padding: 8px 24px; margin-bottom: 16px; }
+  .info-row {
+    display: flex; align-items: flex-start;
+    gap: 14px; padding: 16px 0;
+    border-bottom: 1px solid var(--cream);
+    font-size: 14px; line-height: 1.8;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-icon { font-size: 18px; min-width: 24px; margin-top: 2px; }
+  .info-lbl { font-size: 10px; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 2px; }
+  .info-val { font-size: 14px; color: var(--ink); display: block; }
+  .info-val-en { font-size: 12px; color: var(--muted); display: block; margin-top: 2px; font-family: 'Gaegu', cursive; }
+
+  .map-link {
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+    background: var(--cream); border-radius: 16px;
+    height: 100px; text-decoration: none;
+    font-family: 'Gaegu', cursive; font-size: 16px;
+    color: var(--muted); border: 2px dashed rgba(139,116,90,0.25);
+    transition: all 0.2s;
+  }
+  .map-link:hover { background: var(--warm); color: white; }
+  .map-link span { font-size: 11px; opacity: 0.6; margin-top: -4px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: rgba(250,246,238,0.45);
+    text-align: center; padding: 52px 24px;
+    font-size: 13px; line-height: 2.4;
+  }
+  footer .ft { font-family: 'Nanum Myeongjo', serif; font-size: 22px; color: var(--paper); margin-bottom: 8px; }
+  footer .ft-en { font-family: 'Gaegu', cursive; font-size: 15px; color: rgba(250,246,238,0.5); display: block; margin-bottom: 16px; }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.on { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 520px) {
+    nav { gap: 14px; padding: 9px 16px; }
+    nav a { font-size: 13px; }
+    .hero::before, .hero::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">제3공간</span>
+  <a href="#story">스토리 / Story</a>
+  <a href="#menu">메뉴 / Menu</a>
+  <a href="#findus">오시는 길 / Map</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-since">✦ Since 2008 · Heukseok-dong, Seoul · Next to CAU Middlegate ✦</div>
+  <h1>제<span>3</span>공간</h1>
+  <div class="hero-en">The Third Place — Coffee & Beer</div>
+  <div class="hero-sub">중앙대학교 중문 바로 옆 · 서울 동작구 흑석로6길 16</div>
+  <p class="hero-desc">
+    집도 아니고, 학교도 아닌<br>
+    당신만의 세 번째 공간<br>
+    <em style="font-style:normal;font-size:13px;color:var(--muted)">Not home, not school — your third place ☕🍺</em>
+  </p>
+  <div class="hero-pills">
+    <span class="pill">1급 바리스타 · Level 1 Barista</span>
+    <span class="pill">17년째 운영 · 17 Years</span>
+    <span class="pill">수제 와인 🍷 Handmade Wine</span>
+    <span class="pill">생맥주 🍺 Draft Beer</span>
+    <span class="pill">직접 내린 콜드브루 · House Cold Brew</span>
+  </div>
+  <div class="hero-btns">
+    <a href="#menu" class="btn btn-primary">☕ 메뉴 & 가격 / Menu & Prices</a>
+    <a href="#findus" class="btn btn-ghost">📍 오시는 길 / Directions</a>
+  </div>
+  <div class="scroll-hint">↓ scroll</div>
+</section>
+
+<div class="divider">· · ·</div>
+
+<!-- STORY -->
+<section id="story">
+  <div class="inner">
+    <span class="sec-label reveal">Our Story · 우리 이야기</span>
+    <h2 class="sec-title reveal">1급 바리스타가<br>17년째 지키는 자리</h2>
+    <span class="sec-title-en reveal">A Level 1 Certified Barista, 17 Years Running</span>
+    <p class="sec-body reveal">
+      중앙대 중문 바로 옆, 국가공인 1급 바리스타 자격증을 가진 사장님이 직접 운영하는 카페입니다.<br>
+      <em style="font-style:normal;font-size:13px;">Right next to CAU Middlegate — run personally by a nationally certified Level 1 Barista.</em><br><br>
+      아라비카 5종 직접 블렌딩 원두, 손수 담근 상그리아와 뱅쇼, 매일 직접 내리는 콜드브루.<br>
+      <em style="font-style:normal;font-size:13px;">5-variety Arabica house blend, handmade sangria & mulled wine, daily-brewed cold brew. No shortcuts.</em>
+    </p>
+    <div class="stats reveal">
+      <div class="stat">
+        <span class="stat-num">17</span>
+        <div class="stat-label">년째 한자리<em>Years in One Place</em></div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1급</span>
+        <div class="stat-label">국가공인 바리스타<em>Nationally Certified</em></div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">5종</span>
+        <div class="stat-label">아라비카 블렌딩<em>Arabica Varieties</em></div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">수제</span>
+        <div class="stat-label">와인 & 청 직접 제조<em>Handmade In-House</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">· · ·</div>
+
+<!-- MENU -->
+<section id="menu" class="menu-section">
+  <div class="inner">
+    <span class="sec-label">Full Menu · 전체 메뉴</span>
+    <h2 class="sec-title">메뉴 & 가격</h2>
+    <span class="sec-title-en">Menu & Prices — all in ₩1,000 units (e.g. 4.5 = ₩4,500)</span>
+    <p class="sec-body">부가세 포함 · VAT included · 단위 천원(₩)</p>
+
+    <div class="menu-tabs">
+      <button class="mtab active" onclick="showTab('coffee',this)">☕ Coffee · 커피</button>
+      <button class="mtab" onclick="showTab('beverage',this)">🧋 Drinks · 음료</button>
+      <button class="mtab" onclick="showTab('tea',this)">🍵 Tea · 티</button>
+      <button class="mtab" onclick="showTab('smoothie',this)">🍓 Smoothies · 주스</button>
+      <button class="mtab" onclick="showTab('bakery',this)">🥐 Bakery · 베이커리</button>
+      <button class="mtab" onclick="showTab('wine',this)">🍷 Wine & Beer · 와인·맥주</button>
+      <button class="mtab" onclick="showTab('new',this)">✨ New · 신메뉴</button>
+    </div>
+
+    <!-- COFFEE -->
+    <div class="menu-panel active" id="tab-coffee">
+      <table class="menu-table">
+        <thead><tr><th>Menu</th><th>Hot</th><th>Iced</th></tr></thead>
+        <tbody>
+          <tr><td class="name">에스프레소<span class="name-en">Espresso</span></td><td class="price">2.8</td><td class="price">—</td></tr>
+          <tr><td class="name">에스프레소 꼰빠냐<span class="name-en">Espresso Con Panna</span></td><td class="price">3.5</td><td class="price">—</td></tr>
+          <tr><td class="name">아포가토<span class="name-en">Affogato</span></td><td class="price">—</td><td class="price">5.5</td></tr>
+          <tr><td class="name">아메리카노<span class="name-en">Americano</span></td><td class="price">3.3</td><td class="price">3.8</td></tr>
+          <tr><td class="name">비엔나<span class="name-en">Vienna Coffee</span></td><td class="price">4.5</td><td class="price">—</td></tr>
+          <tr><td class="name">카푸치노<span class="name-en">Cappuccino</span></td><td class="price">4.0</td><td class="price">4.5</td></tr>
+          <tr><td class="name">카페라떼<span class="name-en">Cafe Latte</span></td><td class="price">4.0</td><td class="price">4.5</td></tr>
+          <tr><td class="name">카라멜라떼<span class="name-en">Caramel Latte</span></td><td class="price">4.5</td><td class="price">5.0</td></tr>
+          <tr><td class="name">바닐라라떼<span class="name-en">Vanilla Latte</span></td><td class="price">4.5</td><td class="price">5.0</td></tr>
+          <tr><td class="name">민트초코라떼<span class="name-en">Mint Chocolate Latte</span></td><td class="price">4.5</td><td class="price">5.0</td></tr>
+          <tr><td class="name">헤즐넛라떼<span class="name-en">Hazelnut Latte</span></td><td class="price">4.5</td><td class="price">5.0</td></tr>
+          <tr><td class="name">연유라떼<span class="name-en">Condensed Milk Latte</span></td><td class="price">4.5</td><td class="price">5.0</td></tr>
+          <tr><td class="name">카페모카<span class="name-en">Cafe Mocha</span></td><td class="price">4.8</td><td class="price">5.3</td></tr>
+          <tr><td class="name">카라멜모카<span class="name-en">Caramel Mocha</span></td><td class="price">4.8</td><td class="price">5.3</td></tr>
+          <tr><td class="name">카라멜마키아토<span class="name-en">Caramel Macchiato</span></td><td class="price">5.0</td><td class="price">5.5</td></tr>
+          <tr><td class="name">커피레몬콕<span class="name-en">Coffee Lemon Coke</span></td><td class="price">—</td><td class="price">4.5</td></tr>
+          <tr><td class="name">커피소다<span class="name-en">Coffee Soda</span></td><td class="price">—</td><td class="price">4.5</td></tr>
+          <tr><td class="name">콜드브루<span class="name-en">Cold Brew — brewed daily in-house</span></td><td class="price">4.0</td><td class="price">4.5</td></tr>
+          <tr><td class="name">콜드브루라떼<span class="name-en">Cold Brew Latte</span></td><td class="price">4.5</td><td class="price">5.0</td></tr>
+          <tr><td class="name">베일리스커피<span class="name-en">Baileys Coffee</span></td><td class="price">—</td><td class="price">5.0</td></tr>
+          <tr><td class="name">깔루아커피<span class="name-en">Kahlua Coffee</span></td><td class="price">—</td><td class="price">5.0</td></tr>
+        </tbody>
+      </table>
+      <p class="menu-note">5-variety Arabica house blend · Cold brew extracted fresh every day</p>
+    </div>
+
+    <!-- BEVERAGE -->
+    <div class="menu-panel" id="tab-beverage">
+      <table class="menu-table">
+        <thead><tr><th>Menu</th><th>Hot</th><th>Iced</th></tr></thead>
+        <tbody>
+          <tr><td class="name">초콜렛라떼<span class="name-en">Chocolate Latte</span></td><td class="price">4.0</td><td class="price">4.5</td></tr>
+          <tr><td class="name">홍차라떼<span class="name-en">Black Tea Latte</span></td><td class="price">4.0</td><td class="price">4.5</td></tr>
+          <tr><td class="name">밀크티<span class="name-en">Milk Tea Latte</span></td><td class="price">4.0</td><td class="price">4.5</td></tr>
+          <tr><td class="name">말차라떼<span class="name-en">Matcha Latte</span></td><td class="price">4.0</td><td class="price">4.5</td></tr>
+          <tr><td class="name">그린티샹라떼<span class="name-en">Green Tea Coffee Latte</span></td><td class="price">4.5</td><td class="price">5.0</td></tr>
+          <tr><td class="name">고구마라떼<span class="name-en">Sweet Potato Latte</span></td><td class="price">4.0</td><td class="price">—</td></tr>
+          <tr><td class="name">미수가루라떼<span class="name-en">Misutgaru Latte</span></td><td class="price">4.5</td><td class="price">5.0</td></tr>
+          <tr><td class="name">꿀라떼<span class="name-en">Honey Latte</span></td><td class="price">4.5</td><td class="price">5.0</td></tr>
+          <tr><td class="name">아이스크림라떼<span class="name-en">Ice Cream Latte</span></td><td class="price">—</td><td class="price">5.0</td></tr>
+          <tr><td class="name">초코프라푸치노<span class="name-en">Chocolate Frappuccino</span></td><td class="price">—</td><td class="price">5.5</td></tr>
+          <tr><td class="name">모카프라푸치노<span class="name-en">Mocha Frappuccino</span></td><td class="price">—</td><td class="price">5.5</td></tr>
+          <tr><td class="name">녹차프라푸치노<span class="name-en">Green Tea Frappuccino</span></td><td class="price">—</td><td class="price">5.5</td></tr>
+          <tr><td class="name">카라멜프라푸치노<span class="name-en">Caramel Frappuccino</span></td><td class="price">—</td><td class="price">5.5</td></tr>
+          <tr><td class="name">탄산주스<span class="name-en">Sparkling Juice</span></td><td class="price">—</td><td class="price">3.0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TEA -->
+    <div class="menu-panel" id="tab-tea">
+      <table class="menu-table">
+        <thead><tr><th>Menu</th><th>Hot</th><th>Iced</th></tr></thead>
+        <tbody>
+          <tr><td class="name">레몬차<span class="name-en">Lemon Tea</span></td><td class="price">4.0</td><td class="price">4.5</td></tr>
+          <tr><td class="name">자몽차<span class="name-en">Grapefruit Tea</span></td><td class="price">4.0</td><td class="price">4.5</td></tr>
+          <tr><td class="name">유자차<span class="name-en">Yuja (Citrus) Tea</span></td><td class="price">4.0</td><td class="price">4.5</td></tr>
+          <tr><td class="name">유기농허브티<span class="name-en">Organic Herb Tea</span></td><td class="price">4.0</td><td class="price">4.5</td></tr>
+          <tr><td class="name">아이스티 레몬/복숭아<span class="name-en">Iced Tea — Lemon or Peach</span></td><td class="price">—</td><td class="price">3.3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SMOOTHIE -->
+    <div class="menu-panel" id="tab-smoothie">
+      <table class="menu-table">
+        <thead><tr><th>Menu</th><th colspan="2" style="text-align:right;color:rgba(250,246,238,0.28);font-size:11px;letter-spacing:2px;font-weight:400;padding-bottom:14px;">Price</th></tr></thead>
+        <tbody>
+          <tr><td class="name">생과일주스 — 계절별<span class="name-en">Fresh Fruit Juice — seasonal variety</span></td><td colspan="2" class="price">5.0</td></tr>
+          <tr><td class="name">생과일에이드<span class="name-en">Fresh Fruit Ade — lemon, grapefruit, orange, green grape</span></td><td colspan="2" class="price">5.5</td></tr>
+          <tr><td class="name">과일 스무디<span class="name-en">Fruit Smoothie — strawberry, blueberry, mango, kiwi, peach, pineapple</span></td><td colspan="2" class="price">5.0</td></tr>
+          <tr><td class="name">과일요거트<span class="name-en">Fruit Yogurt Smoothie — strawberry, blueberry, mango, kiwi</span></td><td colspan="2" class="price">6.0</td></tr>
+          <tr><td class="name">플레인요거트<span class="name-en">Plain Yogurt Smoothie</span></td><td colspan="2" class="price">5.0</td></tr>
+        </tbody>
+      </table>
+      <p class="menu-note">All smoothies & juices made with fresh fruit 🍓 · No frozen, no syrup</p>
+    </div>
+
+    <!-- BAKERY -->
+    <div class="menu-panel" id="tab-bakery">
+      <table class="menu-table">
+        <thead><tr><th>Menu</th><th colspan="2" style="text-align:right;color:rgba(250,246,238,0.28);font-size:11px;letter-spacing:2px;font-weight:400;padding-bottom:14px;">Price</th></tr></thead>
+        <tbody>
+          <tr><td class="name">(NEW) 크로플 <span class="new-badge">NEW</span><span class="name-en">Croffle (croissant waffle)</span></td><td colspan="2" class="price">5.0</td></tr>
+          <tr><td class="name">토스트샌드위치<span class="name-en">Toast Sandwich</span></td><td colspan="2" class="price">5.5</td></tr>
+          <tr><td class="name">베이글샌드위치<span class="name-en">Bagel Sandwich</span></td><td colspan="2" class="price">6.0</td></tr>
+          <tr><td class="name">머핀<span class="name-en">Muffin</span></td><td colspan="2" class="price">3.0</td></tr>
+          <tr><td class="name">수제쿠키<span class="name-en">Handmade Cookie</span></td><td colspan="2" class="price">4.5</td></tr>
+          <tr><td class="name">종합수제쿠키<span class="name-en">Assorted Handmade Cookies</span></td><td colspan="2" class="price">5.0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- WINE & BEER -->
+    <div class="menu-panel" id="tab-wine">
+      <table class="menu-table">
+        <thead><tr><th>Menu</th><th>Hot</th><th>Iced/Glass</th></tr></thead>
+        <tbody>
+          <tr><td class="name">뱅쇼<span class="name-en">Vin Chaud — hot mulled wine, winter favourite</span></td><td class="price">5.0</td><td class="price">—</td></tr>
+          <tr><td class="name">상그리아<span class="name-en">Sangria — handmade in-house by the owner 🍷</span></td><td class="price">—</td><td class="price">6.0</td></tr>
+          <tr><td class="name">생맥주<span class="name-en">Draft Beer — ask at counter 🍺</span></td><td class="price">—</td><td class="price">문의</td></tr>
+        </tbody>
+      </table>
+      <p class="menu-note">상그리아는 사장님이 직접 담근 수제 와인 · Sangria handmade by the owner — no two batches the same 🍷</p>
+    </div>
+
+    <!-- NEW -->
+    <div class="menu-panel" id="tab-new">
+      <table class="menu-table">
+        <thead><tr><th>New Menu · 신메뉴</th><th colspan="2" style="text-align:right;color:rgba(250,246,238,0.28);font-size:11px;letter-spacing:2px;font-weight:400;padding-bottom:14px;">Price</th></tr></thead>
+        <tbody>
+          <tr><td class="name">에어콜드아메리카노 <span class="new-badge">NEW</span><span class="name-en">Air Cold Americano</span></td><td colspan="2" class="price">3.8</td></tr>
+          <tr><td class="name">피치 에이드 <span class="new-badge">NEW</span><span class="name-en">Peach Ade</span></td><td colspan="2" class="price">5.5</td></tr>
+          <tr><td class="name">피치 레모네이드 <span class="new-badge">NEW</span><span class="name-en">Peach Lemonade</span></td><td colspan="2" class="price">5.5</td></tr>
+          <tr><td class="name">레몬 에이드 <span class="new-badge">NEW</span><span class="name-en">Lemon Ade</span></td><td colspan="2" class="price">5.5</td></tr>
+          <tr><td class="name">레몬 요거트 스무디 <span class="new-badge">NEW</span><span class="name-en">Lemon Yogurt Smoothie</span></td><td colspan="2" class="price">6.0</td></tr>
+          <tr><td class="name">허니 자몽 블랙티 (Hot) <span class="new-badge">NEW</span><span class="name-en">Honey Grapefruit Black Tea — Hot</span></td><td colspan="2" class="price">4.0</td></tr>
+          <tr><td class="name">허니 자몽 블랙티 (Ice) <span class="new-badge">NEW</span><span class="name-en">Honey Grapefruit Black Tea — Iced</span></td><td colspan="2" class="price">4.5</td></tr>
+        </tbody>
+      </table>
+      <p class="menu-note">메뉴는 계절에 따라 변경될 수 있습니다 · Menu may vary by season</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider">· · ·</div>
+
+<!-- VIBES -->
+<section id="vibes">
+  <div class="inner">
+    <span class="sec-label reveal">Why Come Here · 이런 분들께</span>
+    <h2 class="sec-title reveal">여기서만 가능한 것들</h2>
+    <span class="sec-title-en reveal">Things you can only do here</span>
+    <p class="sec-body reveal">미들도어 줄 서기 귀찮을 때, 조용히 앉고 싶을 때, 시험 끝나고 한 잔 할 때 😄<br><em style="font-style:normal;font-size:13px;">When the line at Middlegate is too long, when you need quiet, when exams are finally over.</em></p>
+    <div class="vibe-grid">
+      <div class="vibe-card reveal">
+        <span class="vibe-emoji">📚</span>
+        <h4>혼자 공부</h4>
+        <span class="vibe-en">Solo Study</span>
+        <p>자리 넉넉하고 조용해요. Spacious, quiet, no pressure to leave.</p>
+      </div>
+      <div class="vibe-card reveal">
+        <span class="vibe-emoji">☀️</span>
+        <h4>창가 자리</h4>
+        <span class="vibe-en">Window Seats</span>
+        <p>채광 좋은 창가 자리 여러 개. Great natural light — perfect for photos too.</p>
+      </div>
+      <div class="vibe-card reveal">
+        <span class="vibe-emoji">🍷</span>
+        <h4>시험 끝나고</h4>
+        <span class="vibe-en">Post-Exam Drinks</span>
+        <p>수제 상그리아 또는 생맥주. Handmade sangria or draft beer — rare at a café.</p>
+      </div>
+      <div class="vibe-card reveal">
+        <span class="vibe-emoji">🫂</span>
+        <h4>친구랑 수다</h4>
+        <span class="vibe-en">Catch Up</span>
+        <p>쿠션 소파 자리. Cushioned sofa seats — feels like someone's living room.</p>
+      </div>
+      <div class="vibe-card reveal">
+        <span class="vibe-emoji">🌿</span>
+        <h4>힐링 타임</h4>
+        <span class="vibe-en">A Breath of Green</span>
+        <p>실내 나무와 식물이 가득. Indoor trees and plants everywhere.</p>
+      </div>
+      <div class="vibe-card reveal">
+        <span class="vibe-emoji">🥐</span>
+        <h4>간단한 한 끼</h4>
+        <span class="vibe-en">Quick Bite</span>
+        <p>크로플, 베이글 샌드위치. Croffle or bagel sandwich to go with your drink.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIND US -->
+<section id="findus" class="findus">
+  <div class="inner">
+    <span class="sec-label reveal">Find Us · 오시는 길</span>
+    <h2 class="sec-title reveal">찾아오는 길</h2>
+    <span class="sec-title-en reveal">We're right next to CAU Middlegate</span>
+    <div class="info-card reveal">
+      <div class="info-row">
+        <span class="info-icon">📍</span>
+        <div>
+          <span class="info-lbl">주소 / Address</span>
+          <span class="info-val">서울 동작구 흑석로6길 16</span>
+          <span class="info-val-en">16 Heukseokro 6-gil, Dongjak-gu, Seoul (지번: 흑석동 207-19)</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🕙</span>
+        <div>
+          <span class="info-lbl">영업시간 / Hours</span>
+          <span class="info-val">매일 10:00 ~ 19:30</span>
+          <span class="info-val-en">Open daily 10:00 AM – 7:30 PM</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🚇</span>
+        <div>
+          <span class="info-lbl">오시는 길 / Getting Here</span>
+          <span class="info-val">지하철 9호선 흑석역 → 중앙대 방향 → 중문(중앙문) 옆 골목</span>
+          <span class="info-val-en">Subway Line 9, Heukseok Station → toward CAU → alley next to Middlegate</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🏫</span>
+        <div>
+          <span class="info-lbl">랜드마크 / Landmark</span>
+          <span class="info-val">미들도어 옆 · 잭심 스터디카페 맞은편</span>
+          <span class="info-val-en">Next to Middlegate Café · Across from Jaksim Study Café</span>
+        </div>
+      </div>
+    </div>
+    <a href="https://place.map.kakao.com/16083030" target="_blank" class="map-link reveal">
+      <span style="font-size:30px">🗺</span>
+      카카오맵으로 바로가기
+      <span>Open directly in Kakao Map — place.map.kakao.com/16083030</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft">제3공간</div>
+  <span class="ft-en">The Third Place · Coffee & Beer · Heukseok-dong, Seoul</span>
+  <p>서울 동작구 흑석로6길 16 · 중앙대 중문 옆</p>
+  <p>매일 10:00 ~ 19:30 · Open daily</p>
+  <p style="margin-top:16px;font-size:11px;opacity:0.5;">© 제3공간. 1급 바리스타가 17년째 운영하는 카페 · Certified Level 1 Barista, 17 years running.</p>
+</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.mtab').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('on'), i * 70);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
