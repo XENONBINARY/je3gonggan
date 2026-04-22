@@ -303,6 +303,9 @@
   .info-val { font-size: 14px; color: var(--ink); display: block; }
   .info-val-en { font-size: 12px; color: var(--muted); display: block; margin-top: 2px; font-family: 'Gaegu', cursive; }
 
+  .map-btn-row {
+    display: flex; gap: 12px; margin-top: 0;
+  }
   .map-link {
     display: flex; align-items: center; justify-content: center;
     flex-direction: column; gap: 8px;
@@ -310,7 +313,7 @@
     height: 100px; text-decoration: none;
     font-family: 'Gaegu', cursive; font-size: 16px;
     color: var(--muted); border: 2px dashed rgba(139,116,90,0.25);
-    transition: all 0.2s;
+    transition: all 0.2s; flex: 1;
   }
   .map-link:hover { background: var(--warm); color: white; }
   .map-link span { font-size: 11px; opacity: 0.6; margin-top: -4px; }
@@ -624,8 +627,8 @@
         <span class="info-icon">🕙</span>
         <div>
           <span class="info-lbl">영업시간 / Hours</span>
-          <span class="info-val">매일 10:00 ~ 19:30</span>
-          <span class="info-val-en">Open daily 10:00 AM – 7:30 PM</span>
+          <span class="info-val">매일 10:00 ~ 20:00</span>
+          <span class="info-val-en">Open daily 10:00 AM – 8:00 PM</span>
         </div>
       </div>
       <div class="info-row">
@@ -645,11 +648,18 @@
         </div>
       </div>
     </div>
-    <a href="https://place.map.kakao.com/16083030" target="_blank" class="map-link reveal">
-      <span style="font-size:30px">🗺</span>
-      카카오맵으로 바로가기
-      <span>Open directly in Kakao Map</span>
-    </a>
+    <div class="map-btn-row reveal">
+      <a href="https://place.map.kakao.com/16083030" target="_blank" class="map-link">
+        <span style="font-size:30px">🗺</span>
+        카카오맵으로 보기
+        <span>Open in Kakao Map</span>
+      </a>
+      <a href="https://map.naver.com/p/entry/place/20830388" target="_blank" class="map-link">
+        <span style="font-size:30px">📍</span>
+        네이버지도로 보기
+        <span>Open in Naver Map</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -657,7 +667,7 @@
   <div class="ft">제3공간</div>
   <span class="ft-en">The Third Place · Coffee & Beer · Heukseok-dong, Seoul</span>
   <p>서울 동작구 흑석로6길 16 · 중앙대 중문 옆</p>
-  <p>매일 10:00 ~ 19:30 · Open daily</p>
+  <p>매일 10:00 ~ 20:00 · Open daily until 8 PM</p>
   <p style="margin-top:16px;font-size:11px;opacity:0.5;">© 제3공간. 1급 바리스타가 17년째 운영하는 카페 · Certified Level 1 Barista, 17 years running.</p>
 </footer>
 
